@@ -1,6 +1,6 @@
  ///////////////   Problem definition "PILES OF PLATES"   ///////////////////////
  
- We stackWe stack n plates into k non-empty piles 
+ We stack n plates into k non-empty piles 
  where each pile is a different size.
    
  Define f(n,k) to be the maximum number of plates
