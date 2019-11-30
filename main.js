@@ -14,10 +14,13 @@ function smallPile() {
   let n = parseInt(plates.value);
   let k = parseInt(piles.value);
 
-  if (smallest(n, k)) {
+  const result = smallest(n, k);
+  if (result) {
     // if possible to divide n into k 
+    fResult.textContent = `Result: ${result}`;
   } else {
     // if impossible to divide n into k
+    fResult.textContent = `It is imposible to divide ${n} into ${k}`;
   }
 }
 
