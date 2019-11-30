@@ -13,9 +13,25 @@
   </header>
   <main>
     <form>
-      <label for="plates">Enter n: </label>
-      <input type="number" name="plates" min="1">
-      <input type="submit" value="F(n)" id="subBtn">
+      <fieldset id="fSection">
+        <legend>Return the result of maximum number of plates 
+          possible in the smallest pile</legend>
+        <label for="plates">n: </label>
+        <input type="number" name="plates" min="1" id="plates">
+        <label for="piles">k: </label>
+        <input type="number" name="piles" min="1" id="piles">
+        <input type="button" value="f (n, k)" id="smallPile">
+        <p>Result: </p>
+      </fieldset>
+      <fieldset id="sumSection">
+        <legend>Return the sum of f(n, k) for all possible 
+          pile sizes k≥1
+        </legend>
+        <label for="n">n: </label>
+        <input type="number" name="n" min="1" id="n">
+        <input type="button" value="F(n)" id="subBtn">
+        <p>Result: </p>
+      </fieldset>
     </form>
     <p></p>
   </main>
