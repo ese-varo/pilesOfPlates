@@ -28,7 +28,7 @@ function smallest(n, k) {
   let piles = [];
   let readyToSave = 0;
   let t = n;
-  let counter = 1;
+  let counter = 3;
 
   if (k === 1) {
     return n;
@@ -48,14 +48,30 @@ function smallest(n, k) {
       return false;
     }
   }
-  while (t > 2 && counter <= k) { 
-
+  while (t > 1 && counter <= k) { 
+    readyToSave = Math.ceil(t / 2);
+    t = t - readyToSave;
+    if (readyToSave === t) {
+      readyToSave += 1;
+      t -= 1;
+    }
+    piles[0] = readyToSave;
+    piles.unshift(t);
+    counter++;
   }
+
+  for (let i = 0; i < Math.floor(piles.length / 2); i++) {
+    while (piles[i] < (piles[i + 1] - 1) && piles[piles.length - 1 - i] > (piles[piles.length - 2 - 1] + 1)) {
+      piles[i] += 1;
+      piles[piles.length - 1 - i] -= 1;
+    }
+  }
+
   if (counter < k) {  // If impossible to divide n into k
     return null;
   }  
 
-  return piles[0];  // If possible to divide n into k 
+  return piles;  // If possible to divide n into k 
 }
 
 function sumOfPiles() {
