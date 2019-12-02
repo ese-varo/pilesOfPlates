@@ -7,8 +7,13 @@ const n = document.querySelector('#nPlates');
 const sumBtn = document.querySelector('#sumBtn');
 const sumResult = document.querySelector('#sumResult');
 
+const platesN = document.querySelector('#platesN');
+const btnN = document.querySelector('#btnN');
+const resultN = document.querySelector('#resultN');
+
 fBtn.addEventListener('click', smallPile);
 sumBtn.addEventListener('click', sumOfPiles);
+btnN.addEventListener('click', sumN);
 
 function smallPile() {
   let n = parseInt(plates.value);
