@@ -35,6 +35,16 @@ function sumOfPiles() {
   sumResult.textContent = `Result: ${sum}`;
 }
 
+function sumN(){
+  let plates = parseInt(platesN.value);
+  let sum = 0;
+
+  for (let i = 1; i <= plates; i++) {
+    sum += sumF(i);
+  }
+  resultN.textContent = `Result: ${sum}`;
+}
+
 function smallest(n, k) {
   let piles = [];
   let counter = 0;
@@ -103,8 +113,4 @@ function sumF(n) {
     k++;
   }
   return sum;
-}
-
-function sumN(){
-
 }
