@@ -29,6 +29,12 @@ function smallPile() {
   }
 }
 
+function sumOfPiles() {
+  let nPlates = parseInt(n.value);
+  let sum = sumF(nPlates);
+  sumResult.textContent = `Result: ${sum}`;
+}
+
 function smallest(n, k) {
   let piles = [];
   let counter = 0;
@@ -89,15 +95,16 @@ function smallest(n, k) {
   return piles[0];
 }
 
-function sumOfPiles() {
-  let nPlates = parseInt(n.value);
+function sumF(n) {
   let sum = 0;
   let k = 1;
-  
-  while (smallest(nPlates, k)) {
-    sum += smallest(nPlates, k);
+  while (smallest(n, k)) {
+    sum += smallest(n, k);
     k++;
   }
+  return sum;
+}
 
-  sumResult.textContent = `Result: ${sum}`;
+function sumN(){
+
 }
