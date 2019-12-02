@@ -1,5 +1,5 @@
 const plates = document.querySelector('#plates');
-const piles = document.querySelector('#piles');
+const fPiles= document.querySelector('#piles');
 const fBtn = document.querySelector('#fBtn');
 const fResult = document.querySelector('#fResult');
 
@@ -12,7 +12,7 @@ sumBtn.addEventListener('click', sumOfPiles);
 
 function smallPile() {
   let n = parseInt(plates.value);
-  let k = parseInt(piles.value);
+  let k = parseInt(fPiles.value);
 
   const result = smallest(n, k);
   if (result) {
@@ -26,52 +26,43 @@ function smallPile() {
 
 function smallest(n, k) {
   let piles = [];
-  let readyToSave = 0;
-  let t = n;
-  let counter = 3;
+  let counter = 0;
+  let index = 0;
+  let lastPile = 0;
+  let firstPile = 0;
+  let previous = 0;
+  let current = 0;
+
+  if (k > Math.ceil(n / 2)) { // Check for invalid cases
+    return false;
+  }
 
   if (k === 1) {
     return n;
   }
-  readyToSave = Math.ceil(t / 2);
-  t = t - readyToSave;
-  if (readyToSave === t) {
-    readyToSave += 1;
-    t -= 1;
-  }
-  piles.unshift(readyToSave);
-  piles.unshift(t);
-  if (k === 2) {
-    if (n > 2) {
-      return piles[0];
-    } else {
-      return false;
-    }
-  }
-  while (t > 1 && counter <= k) { 
-    readyToSave = Math.ceil(t / 2);
-    t = t - readyToSave;
-    if (readyToSave === t) {
-      readyToSave += 1;
-      t -= 1;
-    }
-    piles[0] = readyToSave;
-    piles.unshift(t);
-    counter++;
+
+  for (let i = 0; i < k; i++) {
+    piles.push(0);
   }
 
-  for (let i = 0; i < Math.floor(piles.length / 2); i++) {
-    while (piles[i] < (piles[i + 1] - 1) && piles[piles.length - 1 - i] > (piles[piles.length - 2 - 1] + 1)) {
-      piles[i] += 1;
-      piles[piles.length - 1 - i] -= 1;
+  lastPile = piles.length - 1;
+  index = lastPile;
+  current = piles[lastPile];
+  previous = piles[lastPile - 1];
+  while (counter < k) {
+    if (previous < current - 1) {
+      if (index === 1) {
+        previous += 1;
+        current = piles[lastPile];
+        previous = piles[lastPile - 1];
+      } else {
+        current = previous;
+        current += 1;
+        index--;
+        previous = piles[index - 1];
+      }
     }
   }
-
-  if (counter < k) {  // If impossible to divide n into k
-    return null;
-  }  
-
-  return piles;  // If possible to divide n into k 
 }
 
 function sumOfPiles() {
