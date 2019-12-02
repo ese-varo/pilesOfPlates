@@ -47,22 +47,43 @@ function smallest(n, k) {
 
   lastPile = piles.length - 1;
   index = lastPile;
-  current = piles[lastPile];
-  previous = piles[lastPile - 1];
-  while (counter < k) {
-    if (previous < current - 1) {
-      if (index === 1) {
-        previous += 1;
-        current = piles[lastPile];
-        previous = piles[lastPile - 1];
+  current = lastPile;
+  previous = lastPile - 1;
+  while (counter < n) {
+    if (piles[previous] < (piles[current] - 1)) {
+      if (current === 1) {
+        piles[previous] += 1;
+        current = lastPile;
+        previous = lastPile - 1;
+        counter++;
       } else {
         current = previous;
-        current += 1;
-        index--;
-        previous = piles[index - 1];
+        piles[current] += 1;
+        counter++;
+        current--;
+        previous = current - 1;
+      }
+    } else {
+      if (current < lastPile) { // validate that current is less than next pile minus 1 when index is less than last pile
+        if (piles[current] < (piles[current + 1] - 1)) {
+          piles[current] += 1;
+          counter++;
+        } else {
+          current = lastPile;
+          previous = lastPile - 1;
+        }
+      } else {
+        piles[current] += 1;
+        counter++;
       }
     }
   }
+
+  if (piles[0] === 0) {
+    return false;
+  }
+
+  return piles;
 }
 
 function sumOfPiles() {
